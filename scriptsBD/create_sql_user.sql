@@ -1,0 +1,10 @@
+CREATE ROLE prueba WITH
+    LOGIN
+    NOSUPERUSER
+    INHERIT
+    NOCREATEDB
+    NOCREATEROLE
+    NOREPLICATION
+    PASSWORD 'pru3b4';
+
+GRANT postgres TO prueba;
