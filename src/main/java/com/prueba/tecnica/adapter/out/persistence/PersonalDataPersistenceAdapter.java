@@ -2,7 +2,7 @@ package com.prueba.tecnica.adapter.out.persistence;
 
 import com.prueba.tecnica.application.port.out.GetPersonalData;
 import com.prueba.tecnica.common.PersistenceAdapter;
-import com.prueba.tecnica.domain.PersonalData;
+import com.prueba.tecnica.domain.UserData;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class PersonalDataPersistenceAdapter implements GetPersonalData {
     }
 
     @Override
-    public List<PersonalData> getPersonalData() {
+    public List<UserData> getPersonalData() {
         return personalDataRepository.findAll().stream().map(PersonalDataMapper::entityToDomain).toList();
     }
 }

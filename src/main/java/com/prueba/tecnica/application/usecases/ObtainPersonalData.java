@@ -5,7 +5,7 @@ import com.prueba.tecnica.application.port.in.SavePersonalDataPort;
 import com.prueba.tecnica.application.port.out.GetPersonalData;
 import com.prueba.tecnica.common.AdapterAsync;
 import com.prueba.tecnica.common.UseCase;
-import com.prueba.tecnica.domain.PersonalData;
+import com.prueba.tecnica.domain.UserData;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -25,14 +25,18 @@ public class ObtainPersonalData implements ObtainPersonalDataPort, SavePersonalD
         this.getPersonalData = getPersonalData;
     }
 
+    /**
+     * Method to get personal data
+     * @return List<String>
+     */
     @Override
     public List<String> loadPersonalData() {
-        List<PersonalData> personalData = getPersonalData.getPersonalData();
+        List<UserData> userData = getPersonalData.getPersonalData();
         List<String> personalDataString = new ArrayList<>();
 
-        if (!personalData.isEmpty()) {
-            for (PersonalData data : personalData) {
-                String peronalDatastring  =   data.getFullName() + "," + data.getPhone() + "," + data.getAddress();
+        if (!userData.isEmpty()) {
+            for (UserData data : userData) {
+                String peronalDatastring  =   data.getFullName() + " " + data.getPhone() + " " + data.getAddress();
                 personalDataString.add(peronalDatastring);
             }
         }
@@ -40,6 +44,11 @@ public class ObtainPersonalData implements ObtainPersonalDataPort, SavePersonalD
         return personalDataString;
     }
 
+    /**
+     * Method to save personal data
+     * @param file
+     * @throws IOException
+     */
     @AdapterAsync
     @Override
     public void savePersonalData(MultipartFile file) throws IOException {

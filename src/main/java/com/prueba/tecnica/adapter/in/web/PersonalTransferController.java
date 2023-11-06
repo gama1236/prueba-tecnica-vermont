@@ -3,9 +3,11 @@ package com.prueba.tecnica.adapter.in.web;
 import com.prueba.tecnica.application.port.in.ObtainPersonalDataPort;
 import com.prueba.tecnica.application.port.in.SavePersonalDataPort;
 import com.prueba.tecnica.common.WebAdapter;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +32,10 @@ public class PersonalTransferController {
         this.savePersonalDataPort = savePersonalDataPort;
     }
 
+    /**
+     * Endpoint to get personal data
+     * @return ResponseEntity<byte[]>
+     */
     @GetMapping("/api/users")
     public ResponseEntity<byte[]> getPersonalData() {
         List<String> data = obtainPersonalDataPort.loadPersonalData();
@@ -42,13 +48,17 @@ public class PersonalTransferController {
                 .body(content.getBytes());
     }
 
-
+    /**
+     * Endpoint to save personal data
+     * @param file
+     * @return HttpStatus
+     * @throws IOException
+     */
     @PostMapping(value ="/api/copy", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<HttpStatus> postPersonalData(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<HttpStatus> postPersonalData(@RequestParam(value = "file") MultipartFile file) throws IOException {
 
         savePersonalDataPort.savePersonalData(file);
         return ResponseEntity.ok().build();
     }
-
 
 }

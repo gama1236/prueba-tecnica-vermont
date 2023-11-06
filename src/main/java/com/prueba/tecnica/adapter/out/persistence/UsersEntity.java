@@ -15,8 +15,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "personaldata")
-public class PersonalDataEntity {
+@Entity(name = "USERS")
+public class UsersEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

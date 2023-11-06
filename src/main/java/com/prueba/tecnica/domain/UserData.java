@@ -9,12 +9,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
-@ToString
-public class PersonalData {
+public class UserData {
 
     private Long id;
     private String fullName;
