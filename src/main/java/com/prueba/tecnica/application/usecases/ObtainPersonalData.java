@@ -20,7 +20,6 @@ public class ObtainPersonalData implements ObtainPersonalDataPort, SavePersonalD
     private static final String RELATIVE_PATH = "C:/prueba";
     private final GetPersonalData getPersonalData;
 
-
     ObtainPersonalData(GetPersonalData getPersonalData){
         this.getPersonalData = getPersonalData;
     }
